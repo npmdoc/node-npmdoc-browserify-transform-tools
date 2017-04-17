@@ -1,0 +1,956 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/benbria/browserify-transform-tools#readme">browserify-transform-tools (v1.7.0)</a>
+</h1>
+<h4>Utilities for writing browserify transforms.</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.browserify-transform-tools">module browserify-transform-tools</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.loadTransformConfig">
+            function <span class="apidocSignatureSpan">browserify-transform-tools.</span>loadTransformConfig
+            <span class="apidocSignatureSpan">(transformName, file, options, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.loadTransformConfigSync">
+            function <span class="apidocSignatureSpan">browserify-transform-tools.</span>loadTransformConfigSync
+            <span class="apidocSignatureSpan">(transformName, file, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.makeFalafelTransform">
+            function <span class="apidocSignatureSpan">browserify-transform-tools.</span>makeFalafelTransform
+            <span class="apidocSignatureSpan">(transformName, options, transformFn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.makeFunctionTransform">
+            function <span class="apidocSignatureSpan">browserify-transform-tools.</span>makeFunctionTransform
+            <span class="apidocSignatureSpan">(transformName, options, transformFn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.makeRequireTransform">
+            function <span class="apidocSignatureSpan">browserify-transform-tools.</span>makeRequireTransform
+            <span class="apidocSignatureSpan">(transformName, options, transformFn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.makeStringTransform">
+            function <span class="apidocSignatureSpan">browserify-transform-tools.</span>makeStringTransform
+            <span class="apidocSignatureSpan">(transformName, options, transformFn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.runTransform">
+            function <span class="apidocSignatureSpan">browserify-transform-tools.</span>runTransform
+            <span class="apidocSignatureSpan">(transform, file, options, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.skipFile">
+            function <span class="apidocSignatureSpan">browserify-transform-tools.</span>skipFile
+            <span class="apidocSignatureSpan">(file, configData, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">browserify-transform-tools.</span>loadConfig</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.browserify-transform-tools.loadConfig">module browserify-transform-tools.loadConfig</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.loadConfig.clearConfigCache">
+            function <span class="apidocSignatureSpan">browserify-transform-tools.loadConfig.</span>clearConfigCache
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.loadConfig.loadTransformConfig">
+            function <span class="apidocSignatureSpan">browserify-transform-tools.loadConfig.</span>loadTransformConfig
+            <span class="apidocSignatureSpan">(transformName, file, options, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.loadConfig.loadTransformConfigSync">
+            function <span class="apidocSignatureSpan">browserify-transform-tools.loadConfig.</span>loadTransformConfigSync
+            <span class="apidocSignatureSpan">(transformName, file, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.browserify-transform-tools" id="apidoc.module.browserify-transform-tools">module browserify-transform-tools</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-transform-tools.loadTransformConfig" id="apidoc.element.browserify-transform-tools.loadTransformConfig">
+        function <span class="apidocSignatureSpan">browserify-transform-tools.</span>loadTransformConfig
+        <span class="apidocSignatureSpan">(transformName, file, options, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">loadTransformConfig = function (transformName, file, options, done) {
+  var dir, findConfig;
+  if (done == null) {
+    done = options;
+    options = {};
+  }
+  if (options.fromSourceFileDir) {
+    dir = path.dirname(file);
+  } else {
+    dir = process.cwd();
+  }
+  findConfig = function(dirname) {
+    return findPackageJson(dirname, function(err, packageFile) {
+      var configData;
+      if (err) {
+        return done(err);
+      }
+      if (packageFile == null) {
+        return done(null, null);
+      } else {
+        configData = getConfigFromCache(transformName, packageFile);
+        if (configData) {
+          return done(null, configData);
+        } else {
+          return loadJsonAsync(packageFile, function(err, pkg) {
+            var config, packageDir, parent;
+            if (err) {
+              return done(err);
+            }
+            config = pkg[transformName];
+            packageDir = path.dirname(packageFile);
+            if (config == null) {
+              if (!options.fromSourceFileDir) {
+                return done(null, null);
+              } else {
+                parent = path.resolve(packageDir, "..");
+                if (parent === packageDir) {
+                  return done(null, null);
+                } else {
+                  return findConfig(parent);
+                }
+              }
+            } else {
+              try {
+                configData = processConfig(transformName, packageFile, config);
+                return done(null, configData);
+              } catch (_error) {
+                err = _error;
+                return done(err);
+              }
+            }
+          });
+        }
+      }
+    });
+  };
+  return findConfig(dir);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-transform-tools.loadTransformConfigSync" id="apidoc.element.browserify-transform-tools.loadTransformConfigSync">
+        function <span class="apidocSignatureSpan">browserify-transform-tools.</span>loadTransformConfigSync
+        <span class="apidocSignatureSpan">(transformName, file, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">loadTransformConfigSync = function (transformName, file, options) {
+  var config, configData, dirname, done, packageDir, packageFile, pkg;
+  if (options == null) {
+    options = {};
+  }
+  configData = null;
+  if (options.fromSourceFileDir) {
+    dirname = path.dirname(file);
+  } else {
+    dirname = process.cwd();
+  }
+  done = false;
+  while (!done) {
+    packageFile = findPackageJsonSync(dirname);
+    if (packageFile == null) {
+      configData = null;
+      done = true;
+    } else {
+      configData = getConfigFromCache(transformName, packageFile);
+      if (configData) {
+        done = true;
+      } else {
+        pkg = require(packageFile);
+        config = pkg[transformName];
+        packageDir = path.dirname(packageFile);
+        if (config == null) {
+          if (!options.fromSourceFileDir) {
+            done = true;
+          } else {
+            dirname = path.resolve(packageDir, "..");
+            if (dirname === packageDir) {
+              done = true;
+            }
+          }
+        } else {
+          configData = processConfig(transformName, packageFile, config);
+          done = true;
+        }
+      }
+    }
+  }
+  return configData;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-transform-tools.makeFalafelTransform" id="apidoc.element.browserify-transform-tools.makeFalafelTransform">
+        function <span class="apidocSignatureSpan">browserify-transform-tools.</span>makeFalafelTransform
+        <span class="apidocSignatureSpan">(transformName, options, transformFn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">makeFalafelTransform = function (transformName, options, transformFn) {
+  var falafelOptions, ref, transform;
+  if (options == null) {
+    options = {};
+  }
+  if (transformFn == null) {
+    transformFn = options;
+    options = {};
+  }
+  falafelOptions = (ref = options.falafelOptions) != null ? ref : {};
+  transform = exports.makeStringTransform(transformName, options, function(content, transformOptions, done) {
+    var pending, transformCb, transformErr, transformed;
+    transformErr = null;
+    pending = 1;
+    transformed = null;
+    transformCb = function(err) {
+      if (err &amp;&amp; !transformErr) {
+        transformErr = err;
+        done(err);
+      }
+      if (transformErr) {
+        return;
+      }
+      pending--;
+      if (pending === 0) {
+        return done(null, transformed);
+      }
+    };
+    transformed = falafel(content, falafelOptions, function(node) {
+      var err;
+      pending++;
+      try {
+        return transformFn(node, transformOptions, transformCb);
+      } catch (_error) {
+        err = _error;
+        return transformCb(err);
+      }
+    });
+    return transformCb(transformErr, transformed);
+  });
+  transform.configure = function(config, configOptions) {
+    var answer;
+    if (configOptions == null) {
+      configOptions = {};
+    }
+    answer = exports.makeFalafelTransform(transformName, options, transformFn);
+    answer.setConfig(config, configOptions);
+    return answer;
+  };
+  return transform;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Creating a Falafel Transform
+============================
+Many transforms are based on [falafel](https://github.com/substack/node-falafel). browserify-transform-tools provides an easy way
+ to define such transforms.  Here is an example which wraps all array expressions in a call to `fn()`:
+
+```JavaScript
+var options = {};
+// Wraps all array expressions in a call to fn().  e.g. '[1,2,3]' becomes 'fn([1,2,3])'.
+module.exports = transformTools.<span class="apidocCodeKeywordSpan">makeFalafelTransform</span>("array-fnify", options
+,
+    function (node, transformOptions, done) {
+        if (node.type === 'ArrayExpression') {
+            node.update('fn(' + node.source() + ')');
+        }
+        done();
+    });
+```
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-transform-tools.makeFunctionTransform" id="apidoc.element.browserify-transform-tools.makeFunctionTransform">
+        function <span class="apidocSignatureSpan">browserify-transform-tools.</span>makeFunctionTransform
+        <span class="apidocSignatureSpan">(transformName, options, transformFn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">makeFunctionTransform = function (transformName, options, transformFn) {
+  var evaluateArguments, functionNames, ref, transform;
+  if (options == null) {
+    options = {};
+  }
+  if (transformFn == null) {
+    transformFn = options;
+    options = {};
+  }
+  evaluateArguments = (ref = options.evaluateArguments) != null ? ref : true;
+  functionNames = [];
+  if (options.functionNames != null) {
+    if (Array.isArray(options.functionNames) || {}.toString.call(options.functionNames) === '[object Array]') {
+      functionNames = options.functionNames;
+    } else if (typeof options.functionNames === 'string') {
+      functionNames = [options.functionNames];
+    }
+  }
+  if (functionNames.length === 0) {
+    functionNames.push('require');
+  }
+  transform = exports.makeFalafelTransform(transformName, options, function(node, transformOptions, done) {
+    var args, ref1;
+    if (node.type === 'CallExpression' &amp;&amp; node.callee.type === 'Identifier' &amp;&amp; (ref1 = node.callee.name, indexOf.call(functionNames
+, ref1) &gt;= 0)) {
+      args = evaluateFunctionArgs(evaluateArguments, transformOptions, node);
+      return transformFn({
+        name: node.callee.name,
+        args: args
+      }, transformOptions, function(err, transformed) {
+        if (err) {
+          return done(err);
+        }
+        if (transformed != null) {
+          node.update(transformed);
+        }
+        return done();
+      });
+    } else {
+      return done();
+    }
+  });
+  transform.configure = function(config, configOptions) {
+    var answer;
+    if (configOptions == null) {
+      configOptions = {};
+    }
+    answer = exports.makeFunctionTransform(transformName, options, transformFn);
+    answer.setConfig(config, configOptions);
+    return answer;
+  };
+  return transform;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-transform-tools.makeRequireTransform" id="apidoc.element.browserify-transform-tools.makeRequireTransform">
+        function <span class="apidocSignatureSpan">browserify-transform-tools.</span>makeRequireTransform
+        <span class="apidocSignatureSpan">(transformName, options, transformFn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">makeRequireTransform = function (transformName, options, transformFn) {
+  var evaluateArguments, ref, transform;
+  if (options == null) {
+    options = {};
+  }
+  if (transformFn == null) {
+    transformFn = options;
+    options = {};
+  }
+  evaluateArguments = (ref = options.evaluateArguments) != null ? ref : true;
+  transform = exports.makeFalafelTransform(transformName, options, function(node, transformOptions, done) {
+    var args;
+    if (node.type === 'CallExpression' &amp;&amp; node.callee.type === 'Identifier' &amp;&amp; node.callee.name === 'require') {
+      args = evaluateFunctionArgs(evaluateArguments, transformOptions, node);
+      return transformFn(args.values(), transformOptions, function(err, transformed) {
+        if (err) {
+          return done(err);
+        }
+        if (transformed != null) {
+          node.update(transformed);
+        }
+        return done();
+      });
+    } else {
+      return done();
+    }
+  });
+  transform.configure = function(config, configOptions) {
+    var answer;
+    if (configOptions == null) {
+      configOptions = {};
+    }
+    answer = exports.makeRequireTransform(transformName, options, transformFn);
+    answer.setConfig(config, configOptions);
+    return answer;
+  };
+  return transform;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+Creating a Require Transform
+============================
+
+Many transforms are focused on transforming `require()` calls.  browserify-transform-tools has a solution for this:
+
+```JavaScript
+transform = transformTools.<span class="apidocCodeKeywordSpan">makeRequireTransform</span>("requireTransform",
+{evaluateArguments: true},
+function(args, opts, cb) {
+    if (args[0] === "foo") {
+        return cb(null, "require('bar')");
+    } else {
+        return cb();
+    }
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-transform-tools.makeStringTransform" id="apidoc.element.browserify-transform-tools.makeStringTransform">
+        function <span class="apidocSignatureSpan">browserify-transform-tools.</span>makeStringTransform
+        <span class="apidocSignatureSpan">(transformName, options, transformFn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">makeStringTransform = function (transformName, options, transformFn) {
+  var transform;
+  if (options == null) {
+    options = {};
+  }
+  if (transformFn == null) {
+    transformFn = options;
+    options = {};
+  }
+  transform = function(file, config) {
+    var configData, content, end, ref, write;
+    configData = transform.configData != null ? transform.configData : loadConfig.loadTransformConfigSync(transformName, file, options
+);
+    if (config != null) {
+      configData = (ref = clone(configData)) != null ? ref : {
+        config: {}
+      };
+      configData.config = merge(configData.config, config);
+      if (configData.config.appliesTo) {
+        configData.appliesTo = configData.config.appliesTo;
+        delete configData.config.appliesTo;
+      }
+    }
+    if (skipFile(file, configData, options)) {
+      return through();
+    }
+    content = '';
+    write = function(buf) {
+      return content += buf;
+    };
+    end = function() {
+      var err, handleError, transformOptions;
+      handleError = (function(_this) {
+        return function(error) {
+          var suffix;
+          suffix = " (while " + transformName + " was processing " + file + ")";
+          if (error instanceof Error &amp;&amp; error.message) {
+            error.message += suffix;
+          } else {
+            error = new Error("" + error + suffix);
+          }
+          return _this.emit('error', error);
+        };
+      })(this);
+      try {
+        transformOptions = {
+          file: file,
+          configData: configData,
+          config: configData != null ? configData.config : void 0,
+          opts: configData != null ? configData.config : void 0
+        };
+        return transformFn.call(this, content, transformOptions, (function(_this) {
+          return function(err, transformed) {
+            if (err) {
+              return handleError(err);
+            }
+            _this.queue(String(transformed));
+            return _this.queue(null);
+          };
+        })(this));
+      } catch (_error) {
+        err = _error;
+        return handleError(err);
+      }
+    };
+    return through(write, end);
+  };
+  transform.configure = function(config, configOptions) {
+    var answer;
+    if (configOptions == null) {
+      configOptions = {};
+    }
+    answer = exports.makeStringTransform(transformName, options, transformFn);
+    answer.setConfig(config, configOptions);
+    return answer;
+  };
+  transform.setConfig = function(config, configOptions) {
+    var configDir, configFile;
+    if (configOptions == null) {
+      configOptions = {};
+    }
+    configFile = configOptions.configFile || null;
+    configDir = configOptions.configDir || (configFile ? path.dirname(configFile) : null);
+    if (!config) {
+      this.configData = null;
+    } else {
+      this.configData = {
+        config: config,
+        configFile: configFile,
+        configDir: configDir,
+        cached: false
+      };
+      if (config.appliesTo) {
+        this.configData.appliesTo = config.appliesTo;
+        delete config.appliesTo;
+      }
+    }
+    return this;
+  };
+  return transform;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+===========================
+Browserify transforms work on streams.  This is all well and good, until you want to call a library like "falafel" which
+ doesn't work with streams.  (If you're using falafel specifically, see below for `makeFalafelTransform`.)
+
+Suppose you are writing a transform called "unbluify" which replaces all occurances of "blue" with a color loaded
+ from a configuration:
+
+```JavaScript
+var options = {excludeExtensions: [".json"]};
+module.exports = transformTools.<span class="apidocCodeKeywordSpan">makeStringTransform</span>("unbluify", options,
+    function (content, transformOptions, done) {
+var file = transformOptions.file;
+if(!transformOptions.config) {
+    return done(new Error("Could not find unbluify configuration."));
+}
+
+done(null, content.replace(/blue/g, transformOptions.config.newColor));
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-transform-tools.runTransform" id="apidoc.element.browserify-transform-tools.runTransform">
+        function <span class="apidocSignatureSpan">browserify-transform-tools.</span>runTransform
+        <span class="apidocSignatureSpan">(transform, file, options, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">runTransform = function (transform, file, options, done) {
+  var doTransform;
+  if (options == null) {
+    options = {};
+  }
+  if (done == null) {
+    done = options;
+    options = {};
+  }
+  doTransform = function(content) {
+    var data, err, throughStream;
+    data = "";
+    err = null;
+    throughStream = options.config != null ? transform(file, options.config) : transform(file);
+    throughStream.on("data", function(d) {
+      return data += d;
+    });
+    throughStream.on("end", function() {
+      if (!err) {
+        return done(null, data);
+      }
+    });
+    throughStream.on("error", function(e) {
+      err = e;
+      return done(err);
+    });
+    throughStream.write(content);
+    return throughStream.end();
+  };
+  if (options.content) {
+    return process.nextTick(function() {
+      return doTransform(options.content);
+    });
+  } else {
+    return fs.readFile(file, "utf-8", function(err, content) {
+      if (err) {
+        return done(err);
+      }
+      return doTransform(content);
+    });
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+===================
+If you want to unit test your transform, then `runTransform()` is for you:
+
+```JavaScript
+var myTransform = transformTools.makeFalafelTransform(...);
+var dummyJsFile = path.resolve(__dirname, "../testFixtures/testWithConfig/dummy.js");
+var content = "console.log('Hello World!');";
+transformTools.<span class="apidocCodeKeywordSpan">runTransform</span>(myTransform, dummyJsFile, {content: content},
+    function(err, transformed) {
+        // Verify transformed is what we expect...
+    }
+);
+```
+
+Thanks
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-transform-tools.skipFile" id="apidoc.element.browserify-transform-tools.skipFile">
+        function <span class="apidocSignatureSpan">browserify-transform-tools.</span>skipFile
+        <span class="apidocSignatureSpan">(file, configData, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">skipFile = function (file, configData, options) {
+  var appliesTo, extension, fileToTest, i, includeExtensions, includeThisFile, j, k, l, len, len1, len2, len3, ref, ref1, regex,
+regexes, skip;
+  if (configData == null) {
+    configData = {};
+  }
+  if (options == null) {
+    options = {};
+  }
+  file = path.resolve(file);
+  skip = false;
+  appliesTo = configData.appliesTo;
+  if ((appliesTo == null) || ((appliesTo.includeExtensions == null) &amp;&amp; (appliesTo.excludeExtensions == null) &amp;&amp; (appliesTo.regex
+ == null) &amp;&amp; (appliesTo.files == null))) {
+    appliesTo = options;
+  }
+  includeExtensions = appliesTo != null ? appliesTo.includeExtensions : void 0;
+  if ((appliesTo != null ? appliesTo.jsFilesOnly : void 0) &amp;&amp; !includeExtensions) {
+    includeExtensions = JS_EXTENSIONS;
+  }
+  if (appliesTo.regex != null) {
+    regexes = appliesTo.regex;
+    includeThisFile = false;
+    if (!isArray(regexes)) {
+      regexes = [regexes];
+    }
+    for (i = 0, len = regexes.length; i &lt; len; i++) {
+      regex = regexes[i];
+      if (!regex.test) {
+        regex = new RegExp(regex);
+      }
+      if (regex.test(file)) {
+        includeThisFile = true;
+        break;
+      }
+    }
+    if (!includeThisFile) {
+      skip = true;
+    }
+  } else if (appliesTo.files != null) {
+    includeThisFile = false;
+    ref = appliesTo.files;
+    for (j = 0, len1 = ref.length; j &lt; len1; j++) {
+      fileToTest = ref[j];
+      fileToTest = path.resolve(configData.configDir, fileToTest);
+      if (fileToTest === file) {
+        includeThisFile = true;
+        break;
+      }
+    }
+    if (!includeThisFile) {
+      skip = true;
+    }
+  } else if (appliesTo.excludeExtensions != null) {
+    ref1 = appliesTo.excludeExtensions;
+    for (k = 0, len2 = ref1.length; k &lt; len2; k++) {
+      extension = ref1[k];
+      if (endsWith(file, extension)) {
+        skip = true;
+        break;
+      }
+    }
+  } else if (includeExtensions != null) {
+    includeThisFile = false;
+    for (l = 0, len3 = includeExtensions.length; l &lt; len3; l++) {
+      extension = includeExtensions[l];
+      if (endsWith(file, extension)) {
+        includeThisFile = true;
+        break;
+      }
+    }
+    if (!includeThisFile) {
+      skip = true;
+    }
+  }
+  return skip;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.browserify-transform-tools.loadConfig" id="apidoc.module.browserify-transform-tools.loadConfig">module browserify-transform-tools.loadConfig</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-transform-tools.loadConfig.clearConfigCache" id="apidoc.element.browserify-transform-tools.loadConfig.clearConfigCache">
+        function <span class="apidocSignatureSpan">browserify-transform-tools.loadConfig.</span>clearConfigCache
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">clearConfigCache = function () {
+  packageJsonCache = {};
+  return configCache = {};
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-transform-tools.loadConfig.loadTransformConfig" id="apidoc.element.browserify-transform-tools.loadConfig.loadTransformConfig">
+        function <span class="apidocSignatureSpan">browserify-transform-tools.loadConfig.</span>loadTransformConfig
+        <span class="apidocSignatureSpan">(transformName, file, options, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">loadTransformConfig = function (transformName, file, options, done) {
+  var dir, findConfig;
+  if (done == null) {
+    done = options;
+    options = {};
+  }
+  if (options.fromSourceFileDir) {
+    dir = path.dirname(file);
+  } else {
+    dir = process.cwd();
+  }
+  findConfig = function(dirname) {
+    return findPackageJson(dirname, function(err, packageFile) {
+      var configData;
+      if (err) {
+        return done(err);
+      }
+      if (packageFile == null) {
+        return done(null, null);
+      } else {
+        configData = getConfigFromCache(transformName, packageFile);
+        if (configData) {
+          return done(null, configData);
+        } else {
+          return loadJsonAsync(packageFile, function(err, pkg) {
+            var config, packageDir, parent;
+            if (err) {
+              return done(err);
+            }
+            config = pkg[transformName];
+            packageDir = path.dirname(packageFile);
+            if (config == null) {
+              if (!options.fromSourceFileDir) {
+                return done(null, null);
+              } else {
+                parent = path.resolve(packageDir, "..");
+                if (parent === packageDir) {
+                  return done(null, null);
+                } else {
+                  return findConfig(parent);
+                }
+              }
+            } else {
+              try {
+                configData = processConfig(transformName, packageFile, config);
+                return done(null, configData);
+              } catch (_error) {
+                err = _error;
+                return done(err);
+              }
+            }
+          });
+        }
+      }
+    });
+  };
+  return findConfig(dir);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-transform-tools.loadConfig.loadTransformConfigSync" id="apidoc.element.browserify-transform-tools.loadConfig.loadTransformConfigSync">
+        function <span class="apidocSignatureSpan">browserify-transform-tools.loadConfig.</span>loadTransformConfigSync
+        <span class="apidocSignatureSpan">(transformName, file, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">loadTransformConfigSync = function (transformName, file, options) {
+  var config, configData, dirname, done, packageDir, packageFile, pkg;
+  if (options == null) {
+    options = {};
+  }
+  configData = null;
+  if (options.fromSourceFileDir) {
+    dirname = path.dirname(file);
+  } else {
+    dirname = process.cwd();
+  }
+  done = false;
+  while (!done) {
+    packageFile = findPackageJsonSync(dirname);
+    if (packageFile == null) {
+      configData = null;
+      done = true;
+    } else {
+      configData = getConfigFromCache(transformName, packageFile);
+      if (configData) {
+        done = true;
+      } else {
+        pkg = require(packageFile);
+        config = pkg[transformName];
+        packageDir = path.dirname(packageFile);
+        if (config == null) {
+          if (!options.fromSourceFileDir) {
+            done = true;
+          } else {
+            dirname = path.resolve(packageDir, "..");
+            if (dirname === packageDir) {
+              done = true;
+            }
+          }
+        } else {
+          configData = processConfig(transformName, packageFile, config);
+          done = true;
+        }
+      }
+    }
+  }
+  return configData;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
