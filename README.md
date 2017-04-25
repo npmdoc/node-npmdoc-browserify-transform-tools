@@ -1,4 +1,7 @@
-# api documentation for  [browserify-transform-tools (v1.7.0)](https://github.com/benbria/browserify-transform-tools#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-browserify-transform-tools.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-browserify-transform-tools) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-browserify-transform-tools.svg)](https://travis-ci.org/npmdoc/node-npmdoc-browserify-transform-tools)
+# npmdoc-browserify-transform-tools
+
+#### basic api documentation for  [browserify-transform-tools (v1.7.0)](https://github.com/benbria/browserify-transform-tools#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-browserify-transform-tools.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-browserify-transform-tools) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-browserify-transform-tools.svg)](https://travis-ci.org/npmdoc/node-npmdoc-browserify-transform-tools)
+
 #### Utilities for writing browserify transforms.
 
 [![NPM](https://nodei.co/npm/browserify-transform-tools.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/browserify-transform-tools)
@@ -84,7 +87,8 @@
         "prepublish": "coffee -c -o lib src && npm test",
         "test": "mocha && istanbul report text-summary lcov"
     },
-    "version": "1.7.0"
+    "version": "1.7.0",
+    "bin": {}
 }
 ```
 
