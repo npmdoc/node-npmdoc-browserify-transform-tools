@@ -132,6 +132,12 @@
 
         </li>
 
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">browserify-transform-tools.</span>parentDir</span>
+
+        </li>
+
     </ol></li>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.browserify-transform-tools.loadConfig">module browserify-transform-tools.loadConfig</a><ol>
@@ -159,6 +165,28 @@
             <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.loadConfig.loadTransformConfigSync">
             function <span class="apidocSignatureSpan">browserify-transform-tools.loadConfig.</span>loadTransformConfigSync
             <span class="apidocSignatureSpan">(transformName, file, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.browserify-transform-tools.parentDir">module browserify-transform-tools.parentDir</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.parentDir.parentDir">
+            function <span class="apidocSignatureSpan">browserify-transform-tools.</span>parentDir
+            <span class="apidocSignatureSpan">(dir, fileToFind, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.browserify-transform-tools.parentDir.parentDirSync">
+            function <span class="apidocSignatureSpan">browserify-transform-tools.parentDir.</span>parentDirSync
+            <span class="apidocSignatureSpan">(dir, fileToFind)</span>
             </a>
 
         </li>
@@ -291,7 +319,24 @@
   }
   return configData;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+if (transformFn == null) {
+  transformFn = options;
+  options = {};
+}
+transform = function(file, config) {
+  var configData, content, end, ref, write;
+  configData = transform.configData != null ? transform.configData : loadConfig.<span class="apidocCodeKeywordSpan">loadTransformConfigSync
+</span>(transformName, file, options);
+  if (config != null) {
+    configData = (ref = clone(configData)) != null ? ref : {
+      config: {}
+    };
+    configData.config = merge(configData.config, config);
+    if (configData.config.appliesTo) {
+      configData.appliesTo = configData.config.appliesTo;
+...</pre></li>
     </ul>
 
 
@@ -437,7 +482,23 @@ module.exports = transformTools.<span class="apidocCodeKeywordSpan">makeFalafelT
   };
   return transform;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    }
+  });
+  transform.configure = function(config, configOptions) {
+    var answer;
+    if (configOptions == null) {
+      configOptions = {};
+    }
+    answer = exports.<span class="apidocCodeKeywordSpan">makeFunctionTransform</span>(transformName, options, transformFn);
+    answer.setConfig(config, configOptions);
+    return answer;
+  };
+  return transform;
+};
+
+exports.runTransform = function(transform, file, options, done) {
+...</pre></li>
     </ul>
 
 
@@ -799,6 +860,8 @@ regexes, skip;
 
 
 
+
+
 </div>
 
 <div class="apidocSectionDiv">
@@ -816,7 +879,23 @@ regexes, skip;
   packageJsonCache = {};
   return configCache = {};
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+beforeEach -&gt;
+    process.chdir testDir
+
+after -&gt;
+    process.chdir cwd
+
+it "should load configuration from package.json", (done) -&gt;
+    loadConfig.<span class="apidocCodeKeywordSpan">clearConfigCache</span>()
+    transformTools.loadTransformConfig "unblueify", dummyJsFile, (err, configData) -&gt;
+        return done err if err
+        assert configData, "Config found"
+        assert.equal configData.cached, false
+        assert.equal configData.config.color, "red"
+        assert.equal configData.configDir, path.resolve __dirname, "../testFixtures/testWithConfig"
+        assert.equal configData.configFile, path.resolve __dirname, "../testFixtures/testWithConfig/package.json"
+...</pre></li>
     </ul>
 
 
@@ -941,7 +1020,121 @@ regexes, skip;
   }
   return configData;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+if (transformFn == null) {
+  transformFn = options;
+  options = {};
+}
+transform = function(file, config) {
+  var configData, content, end, ref, write;
+  configData = transform.configData != null ? transform.configData : loadConfig.<span class="apidocCodeKeywordSpan">loadTransformConfigSync
+</span>(transformName, file, options);
+  if (config != null) {
+    configData = (ref = clone(configData)) != null ? ref : {
+      config: {}
+    };
+    configData.config = merge(configData.config, config);
+    if (configData.config.appliesTo) {
+      configData.appliesTo = configData.config.appliesTo;
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.browserify-transform-tools.parentDir" id="apidoc.module.browserify-transform-tools.parentDir">module browserify-transform-tools.parentDir</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-transform-tools.parentDir.parentDir" id="apidoc.element.browserify-transform-tools.parentDir.parentDir">
+        function <span class="apidocSignatureSpan">browserify-transform-tools.</span>parentDir
+        <span class="apidocSignatureSpan">(dir, fileToFind, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parentDir = function (dir, fileToFind, done) {
+  var exists, ref;
+  exists = (ref = fs.exists) != null ? ref : path.exists;
+  return exists(path.join(dir, fileToFind), function(fileExists) {
+    var parent;
+    if (fileExists) {
+      return done(null, dir);
+    } else {
+      parent = path.resolve(dir, "..");
+      if (parent === dir) {
+        return done(null, null);
+      } else {
+        return exports.parentDir(parent, fileToFind, done);
+      }
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var answer;
+answer = packageJsonCache[dirname];
+if (answer) {
+  return process.nextTick(function() {
+    return done(null, answer);
+  });
+} else {
+  return parentDir.<span class="apidocCodeKeywordSpan">parentDir</span>(dirname, 'package.json', function(err, packageDir
+) {
+    var packageFile;
+    if (err) {
+      return done(err);
+    }
+    if (packageDir) {
+      packageFile = path.join(packageDir, 'package.json');
+    } else {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.browserify-transform-tools.parentDir.parentDirSync" id="apidoc.element.browserify-transform-tools.parentDir.parentDirSync">
+        function <span class="apidocSignatureSpan">browserify-transform-tools.parentDir.</span>parentDirSync
+        <span class="apidocSignatureSpan">(dir, fileToFind)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">parentDirSync = function (dir, fileToFind) {
+  var answer, dirToCheck, existsSync, oldDirToCheck, ref;
+  existsSync = (ref = fs.existsSync) != null ? ref : path.existsSync;
+  dirToCheck = path.resolve(dir);
+  answer = null;
+  while (true) {
+    if (existsSync(path.join(dirToCheck, fileToFind))) {
+      answer = dirToCheck;
+      break;
+    }
+    oldDirToCheck = dirToCheck;
+    dirToCheck = path.resolve(dirToCheck, "..");
+    if (oldDirToCheck === dirToCheck) {
+      break;
+    }
+  }
+  return answer;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  }
+};
+
+findPackageJsonSync = function(dirname) {
+  var answer, packageDir, packageFile;
+  answer = packageJsonCache[dirname];
+  if (!answer) {
+    packageDir = parentDir.<span class="apidocCodeKeywordSpan">parentDirSync</span>(dirname, 'package.json');
+    if (packageDir) {
+      packageFile = path.join(packageDir, 'package.json');
+    } else {
+      packageFile = null;
+    }
+    packageJsonCache[dirname] = packageFile;
+    answer = packageFile;
+...</pre></li>
     </ul>
 
 
